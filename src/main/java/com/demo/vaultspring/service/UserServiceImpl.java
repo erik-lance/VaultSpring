@@ -32,18 +32,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id);
     }
 
-    /**
-     * Adds account to a user
-     * @param account the account to be added
-     * @param user the user to own the bank account
-     */
     @Override
-    public void addAccount(Account account, User user) {
-        // TODO: Implement feature in Account
-    }
-
-    @Override
-    public void deleteUser(User user) {
-        userRepository.delete(user);
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
     }
 }
