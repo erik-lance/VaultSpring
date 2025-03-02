@@ -1,7 +1,7 @@
 package com.demo.vaultspring.services;
 
 import com.demo.vaultspring.model.Transaction;
-import com.demo.vaultspring.repository.TransactionRepository;
+import com.demo.vaultspring.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.demo.vaultspring.repository;
+package com.demo.vaultspring.repositories;
 
 import com.demo.vaultspring.model.Account;
 import com.demo.vaultspring.model.User;

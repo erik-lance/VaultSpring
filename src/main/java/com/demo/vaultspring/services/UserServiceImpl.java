@@ -1,7 +1,7 @@
 package com.demo.vaultspring.services;
 
 import com.demo.vaultspring.model.User;
-import com.demo.vaultspring.repository.UserRepository;
+import com.demo.vaultspring.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

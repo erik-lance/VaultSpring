@@ -1,4 +1,4 @@
-package com.demo.vaultspring.controller;
+package com.demo.vaultspring.controllers;
 
 import com.demo.vaultspring.model.Transaction;
 import com.demo.vaultspring.services.TransactionService;

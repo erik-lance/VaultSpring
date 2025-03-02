@@ -1,4 +1,4 @@
-package com.demo.vaultspring.repository;
+package com.demo.vaultspring.repositories;
 
 import com.demo.vaultspring.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
