@@ -20,6 +20,7 @@ public class Account {
     private BigDecimal balance;
 
     // Many bank accounts can belong to one user.
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }
