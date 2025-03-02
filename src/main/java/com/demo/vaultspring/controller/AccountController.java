@@ -1,7 +1,7 @@
 package com.demo.vaultspring.controller;
 
 import com.demo.vaultspring.model.Account;
-import com.demo.vaultspring.service.AccountService;
+import com.demo.vaultspring.services.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

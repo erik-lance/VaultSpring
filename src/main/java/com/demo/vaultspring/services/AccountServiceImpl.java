@@ -1,4 +1,4 @@
-package com.demo.vaultspring.service;
+package com.demo.vaultspring.services;
 
 import com.demo.vaultspring.model.Account;
 import com.demo.vaultspring.repository.AccountRepository;

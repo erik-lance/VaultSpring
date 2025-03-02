@@ -1,7 +1,7 @@
 package com.demo.vaultspring.controller;
 
 import com.demo.vaultspring.model.Transaction;
-import com.demo.vaultspring.service.TransactionService;
+import com.demo.vaultspring.services.TransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
