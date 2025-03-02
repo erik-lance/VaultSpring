@@ -5,6 +5,8 @@ import com.demo.vaultspring.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -26,9 +28,15 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
+
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(Long id) {
-        userService.deleteById(id);
+    public ResponseEntity<Void> deleteUser(Long id) {
+        userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 }

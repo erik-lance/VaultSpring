@@ -5,6 +5,7 @@ import com.demo.vaultspring.model.User;
 import com.demo.vaultspring.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,7 +34,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 }
