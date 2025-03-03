@@ -29,22 +29,22 @@ public class Transaction {
     private LocalDateTime timestamp;
 
     @ManyToOne
-    private User user;
+    private Account account;
 
     /**
-     * Constructor for no set time and user
+     * Constructor for no set time
      * @param id Transaction ID
      * @param amount Amount being transacted
      * @param type If withdrawal or deposit, etc.
-     * @param user User doing the transaction
+     * @param account User doing the transaction
      */
     public Transaction(
-            Long id, BigDecimal amount, TransactionType type, User user
+            Long id, BigDecimal amount, TransactionType type, Account account
     ) {
         this.id = id;
         this.amount = amount;
         this.type = type;
         this.timestamp = LocalDateTime.now();
-        this.user = user;
+        this.account = account;
     }
 }
