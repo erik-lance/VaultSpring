@@ -26,11 +26,11 @@ public class UserServiceTest {
     @Mock
     private AccountRepository accountRepository;
 
-    @InjectMocks
-    private UserServiceImpl userService;
+    @Mock
+    private AccountService accountService;
 
     @InjectMocks
-    private AccountServiceImpl accountService;
+    private UserServiceImpl userService;
 
     private User user;
 
