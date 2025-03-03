@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@Table(name = "users") // user is reserved in Postgre
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
