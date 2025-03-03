@@ -25,6 +25,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    // If user is deleted, automatically delete accounts
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Account> accounts = new ArrayList<>();
 
