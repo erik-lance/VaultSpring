@@ -6,6 +6,7 @@ import com.demo.vaultspring.exceptions.InvalidAmountException;
 import com.demo.vaultspring.model.Account;
 import com.demo.vaultspring.repositories.AccountRepository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -13,14 +14,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class AccountServiceImpl implements AccountService{
     private final AccountRepository accountRepository;
-
-    public AccountServiceImpl(
-            AccountRepository accountRepository
-    ) {
-        this.accountRepository = accountRepository;
-    }
 
     @Override
     public Account createAccount(Account account) {

@@ -5,23 +5,17 @@ import com.demo.vaultspring.model.Account;
 import com.demo.vaultspring.model.User;
 import com.demo.vaultspring.repositories.AccountRepository;
 import com.demo.vaultspring.repositories.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final AccountRepository accountRepository;
-
-    public UserServiceImpl(
-            UserRepository userRepository,
-            AccountRepository accountRepository
-    ) {
-        this.userRepository = userRepository;
-        this.accountRepository = accountRepository;
-    }
 
     @Override
     public User createUser(User user) {
