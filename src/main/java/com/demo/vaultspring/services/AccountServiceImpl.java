@@ -1,5 +1,8 @@
 package com.demo.vaultspring.services;
 
+import com.demo.vaultspring.exceptions.AccountNotFoundException;
+import com.demo.vaultspring.exceptions.InsufficientBalanceException;
+import com.demo.vaultspring.exceptions.InvalidAmountException;
 import com.demo.vaultspring.model.Account;
 import com.demo.vaultspring.repositories.AccountRepository;
 import jakarta.transaction.Transactional;
@@ -44,11 +47,11 @@ public class AccountServiceImpl implements AccountService{
     public Account deposit(Long accountId, BigDecimal amount) {
         if (amount.compareTo(BigDecimal.valueOf(0)) <= 0) {
             // If depositing 0 or less, throw
-            throw new RuntimeException("Deposit amount must be greater than zero");
+            throw new InvalidAmountException();
         }
 
         Account account = accountRepository.findById(accountId)
-                .orElseThrow(() -> new RuntimeException("Account does not exist"));
+                .orElseThrow(AccountNotFoundException::new);
 
         BigDecimal newBalance = account.getBalance().add(amount);
         account.setBalance(newBalance);
@@ -60,12 +63,12 @@ public class AccountServiceImpl implements AccountService{
     @Transactional
     public Account withdraw(Long accountId, BigDecimal amount) {
         Account account = accountRepository.findById(accountId)
-                .orElseThrow(() -> new RuntimeException("Account does not exist"));
+                .orElseThrow(AccountNotFoundException::new);
 
         BigDecimal newBalance = account.getBalance().subtract(amount);
 
         if (newBalance.compareTo(BigDecimal.valueOf(0)) < 0) {
-            throw new RuntimeException("Insufficient balance");
+            throw new InsufficientBalanceException();
         } else {
             account.setBalance(newBalance);
         }

@@ -1,5 +1,6 @@
 package com.demo.vaultspring.services;
 
+import com.demo.vaultspring.exceptions.UserNotFoundException;
 import com.demo.vaultspring.model.Account;
 import com.demo.vaultspring.model.User;
 import com.demo.vaultspring.repositories.AccountRepository;
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addAccountToUser(Long userId, Account account) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(UserNotFoundException::new);
 
         user.addAccount(account);
         accountRepository.save(account);    // Save newly added account
@@ -60,10 +61,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeAccountFromUser(Long userId, Long accountId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(UserNotFoundException::new);
 
         Account account = accountRepository.findById(accountId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(UserNotFoundException::new);
 
         user.removeAccount(account);                // Remove account from user
         accountRepository.deleteById(accountId);    // All accounts must have a user

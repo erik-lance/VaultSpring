@@ -1,5 +1,6 @@
 package com.demo.vaultspring.services;
 
+import com.demo.vaultspring.exceptions.AccountNotFoundException;
 import com.demo.vaultspring.model.Account;
 import com.demo.vaultspring.model.Transaction;
 import com.demo.vaultspring.model.enums.TransactionType;
@@ -35,7 +36,7 @@ public class TransactionServiceImpl implements TransactionService{
         }
 
         if (account == null) {
-            throw new RuntimeException("Account does not exist");
+            throw new AccountNotFoundException();
         }
 
         Transaction transaction = new Transaction(
