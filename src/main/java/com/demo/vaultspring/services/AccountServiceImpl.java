@@ -2,8 +2,10 @@ package com.demo.vaultspring.services;
 
 import com.demo.vaultspring.model.Account;
 import com.demo.vaultspring.repositories.AccountRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,5 +37,39 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public void deleteAccount(Long id) {
         accountRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public Account deposit(Long accountId, BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.valueOf(0)) <= 0) {
+            // If depositing 0 or less, throw
+            throw new RuntimeException("Deposit amount must be greater than zero");
+        }
+
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account does not exist"));
+
+        BigDecimal newBalance = account.getBalance().add(amount);
+        account.setBalance(newBalance);
+
+        return accountRepository.save(account);
+    }
+
+    @Override
+    @Transactional
+    public Account withdraw(Long accountId, BigDecimal amount) {
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account does not exist"));
+
+        BigDecimal newBalance = account.getBalance().subtract(amount);
+
+        if (newBalance.compareTo(BigDecimal.valueOf(0)) < 0) {
+            throw new RuntimeException("Insufficient balance");
+        } else {
+            account.setBalance(newBalance);
+        }
+
+        return accountRepository.save(account);
     }
 }

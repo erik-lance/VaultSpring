@@ -32,11 +32,27 @@ public class Transaction {
     private Account account;
 
     /**
+     * Constructor with no ID (It is automatically generated)
+     * @param amount Amount being transacted
+     * @param type If withdrawal or depositc, etc.
+     * @param timestamp Time of transaction
+     * @param account Account involved in transaction
+     */
+    public Transaction(
+            BigDecimal amount, TransactionType type, LocalDateTime timestamp, Account account
+    ) {
+        this.amount = amount;
+        this.type = type;
+        this.timestamp = timestamp;
+        this.account = account;
+    }
+
+    /**
      * Constructor for no set time
      * @param id Transaction ID
      * @param amount Amount being transacted
      * @param type If withdrawal or deposit, etc.
-     * @param account User doing the transaction
+     * @param account Account involved in transaction
      */
     public Transaction(
             Long id, BigDecimal amount, TransactionType type, Account account

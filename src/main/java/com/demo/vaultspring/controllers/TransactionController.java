@@ -1,10 +1,12 @@
 package com.demo.vaultspring.controllers;
 
 import com.demo.vaultspring.model.Transaction;
+import com.demo.vaultspring.model.enums.TransactionType;
 import com.demo.vaultspring.services.TransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -16,9 +18,23 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping
-    public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
-        return ResponseEntity.ok(transactionService.createTransaction(transaction));
+    @PostMapping("/{accountId}")
+    public ResponseEntity<Transaction> createTransaction(
+            @PathVariable Long accountId,
+            @RequestParam BigDecimal amount,
+            @RequestParam TransactionType type
+            ) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            // Can't withdraw nor deposit with said amount
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        try {
+            Transaction transaction = transactionService.createTransaction(accountId, amount, type);
+            return ResponseEntity.ok(transaction);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @GetMapping("/{id}")
