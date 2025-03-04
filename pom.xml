@@ -82,8 +82,8 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>4.29.0</version>
 				<configuration>
-					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
-					<outputChangeLogFile>src/main/resources/db/changelog/initial-changelog.xml</outputChangeLogFile>
+					<changeLogFile>db.changelog-master.xml</changeLogFile>
+					<searchPath>src/main/resources/db/changelog</searchPath>
 					<url>jdbc:postgresql://localhost:5432/vaultspring</url>
 					<username>postgres</username>
 					<password>1234</password>
