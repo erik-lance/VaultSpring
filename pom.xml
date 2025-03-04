@@ -56,11 +56,6 @@
 			<version>1.18.34</version>
 		</dependency>
 		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-maven-plugin</artifactId>
-			<version>4.29.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -81,6 +76,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.29.0</version>
+				<configuration>
+					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
+					<outputChangeLogFile>src/main/resources/db/changelog/initial-changelog.xml</outputChangeLogFile>
+					<url>jdbc:postgresql://localhost:5432/vaultspring</url>
+					<username>postgres</username>
+					<password>1234</password>
+					<driver>org.postgresql.Driver</driver>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
