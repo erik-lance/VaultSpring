@@ -22,11 +22,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    /**
-     * Returns an (optional) user in the database using id
-     * @param id of the user
-     * @return the user if found
-     */
     @Override
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
