@@ -1,10 +1,9 @@
 package com.demo.vaultspring.services;
 
-import com.demo.vaultspring.dto.AuthResponse;
-import com.demo.vaultspring.dto.LoginRequest;
-import com.demo.vaultspring.dto.RegisterRequest;
+import com.demo.vaultspring.dto.auth.AuthResponse;
+import com.demo.vaultspring.dto.auth.LoginRequest;
+import com.demo.vaultspring.dto.auth.RegisterRequest;
 import com.demo.vaultspring.model.User;
-import com.demo.vaultspring.model.enums.Role;
 
 import java.util.Optional;
 

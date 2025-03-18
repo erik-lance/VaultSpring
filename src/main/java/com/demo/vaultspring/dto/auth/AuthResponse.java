@@ -1,4 +1,4 @@
-package com.demo.vaultspring.dto;
+package com.demo.vaultspring.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
