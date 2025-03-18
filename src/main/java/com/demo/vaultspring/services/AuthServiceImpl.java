@@ -1,8 +1,8 @@
 package com.demo.vaultspring.services;
 
-import com.demo.vaultspring.dto.auth.AuthResponse;
-import com.demo.vaultspring.dto.auth.LoginRequest;
-import com.demo.vaultspring.dto.auth.RegisterRequest;
+import com.demo.vaultspring.dto.auth.AuthResponseDTO;
+import com.demo.vaultspring.dto.auth.LoginRequestDTO;
+import com.demo.vaultspring.dto.auth.RegisterRequestDTO;
 import com.demo.vaultspring.exceptions.UserNotFoundException;
 import com.demo.vaultspring.exceptions.UsernameExistsException;
 import com.demo.vaultspring.model.User;
@@ -27,7 +27,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public AuthResponse register(RegisterRequest request) {
+    public AuthResponseDTO register(RegisterRequestDTO request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new UsernameExistsException();
         }
@@ -39,11 +39,11 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(user);
 
         String token = jwtUtil.generateToken(user);
-        return new AuthResponse(token);
+        return new AuthResponseDTO(token);
     }
 
     @Override
-    public AuthResponse login(LoginRequest request) {
+    public AuthResponseDTO login(LoginRequestDTO request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),

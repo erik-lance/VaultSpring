@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AuthResponse {
+public class AuthResponseDTO {
     @NotBlank(message = "Token can not be blank")
     private String token;
 }
